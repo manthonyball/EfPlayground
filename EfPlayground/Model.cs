@@ -1,6 +1,9 @@
+using System.Reflection.Metadata;
 using EFGetStarted.Models;
+using EfPlayground.EntityTypeConfigurations;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 public class FNContext : DbContext
 {
@@ -20,4 +23,10 @@ public class FNContext : DbContext
         };
         options.UseSqlServer(builder.ConnectionString);
     }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        new DirectAgentEntityTypeConfiguration().Configure(modelBuilder.Entity<DirectAgent>());
+        new HubAgentEntityTypeConfiguration().Configure(modelBuilder.Entity<HubAgent>());
+        new MortgageAgentEntityTypeConfiguration().Configure(modelBuilder.Entity<MortgageAgent>());
+    }    
 }

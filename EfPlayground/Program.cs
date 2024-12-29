@@ -1,6 +1,10 @@
-﻿Console.WriteLine("Hello, World!");
+﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+// https://learn.microsoft.com/en-us/ef/core/modeling/keys?tabs=data-annotations
+Console.WriteLine("Hello, World!");
 
 using var db = new FNContext();
+Console.WriteLine(db.Model.ToDebugString());
+Console.WriteLine(db.Model.ToDebugString(MetadataDebugStringOptions.LongDefault));
 
 var testJoiningHub = from mortgageAgnt in db.MortgageAgents
                   join hAgnt in db.HubAgents
