@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿Console.WriteLine("Hello, World!");
 
 using var db = new FNContext();
 
@@ -17,6 +16,7 @@ foreach (var test in testJoiningHub)
 {
     Console.WriteLine($"{test.agntCode} is an hub agent managing {test.mortgageNumber}");
 }
+
 var testJoiningDirect = db.MortgageAgents.Join(db.DirectAgents, 
       mortgageAgnt => mortgageAgnt.DirectAgentCode,
       dAgnt => dAgnt.Code, 
